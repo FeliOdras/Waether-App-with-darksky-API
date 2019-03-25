@@ -10,6 +10,7 @@ class ShowWeatherInfo {
             .then(data => {
                 this.weatherData = data;
                 this.createTemplateCurrent()
+                this.showDailyForecast()
             })
     }
 
@@ -82,8 +83,20 @@ class ShowWeatherInfo {
                 </div>
             </div>
         `
-        console.log(template)
         document.querySelector('#currentWeather').innerHTML = template
+    }
+
+    showDailyForecast() {
+
+        let dailyForecast = this.weatherData.daily.data;
+        console.log(dailyForecast)
+        let dailyForecastOutput = dailyForecast.map(
+            (weatherData, key) => {
+                `Hello ${weatherData.summary}`
+            }
+        )
+        console.log(dailyForecastOutput)
+        document.querySelector('#forecast').innerHTML = dailyForecastOutput;
     }
 }
 
