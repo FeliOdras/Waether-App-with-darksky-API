@@ -10,7 +10,6 @@ class ShowWeatherInfo {
             .then(data => {
                 this.weatherData = data;
                 this.createTemplateCurrent();
-                // this.showForecast(this.weatherData.daily.data)
             })
     }
 
