@@ -5,4 +5,14 @@
     }
 }
 
-.forecast-button {}
+.daily-forecast {
+    .forecast-hour {
+        display: none;
+    }
+}
+
+.hourly-forecast {
+    .forecast-date {
+        display: none;
+    }
+}

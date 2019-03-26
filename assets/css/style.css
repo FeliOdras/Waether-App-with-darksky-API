@@ -27,3 +27,9 @@ main {
 
 #currentWeather .location {
   background-color: #222E3C; }
+
+.daily-forecast .forecast-hour {
+  display: none; }
+
+.hourly-forecast .forecast-date {
+  display: none; }

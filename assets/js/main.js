@@ -86,23 +86,25 @@ class ShowWeatherInfo {
     showForecast(array, cssClass, headline) {
         let forecastArray = new Array(array)
         let template = ``;
-        template += `<div class="${cssClass} row">`
+        template += `<div class="${cssClass} ">`
         template += `<h3 class="col-12">${headline}</h3>`
+        template += `<div class="d-flex flex-wrap align-self-stretch">`
         forecastArray.forEach(weatherData => {
             let forecastArrayLength = weatherData.length
             for (let i = 0; i < forecastArrayLength; i++) {
                 let timeFormatted = this.formatDate(weatherData[i])
                 template += `
-                <div class="col-md-3 col-sm-6 col-12">
-                   <div class="forecast-day">
+                <div class="col-md-3 col-sm-6 col-12 p-2">
+                <div class="inner bg-light-70 p-2">
+                   <div class="forecast-day bg-dark text-light ml-n2 mr-n2 mt-n2 p-2">
                         ${moment(timeFormatted).format('dddd')}<br>
-                        <span class="forecast-day small">${moment(timeFormatted).format('MMMM Do')}</span>
+                        <span class="small forecast-date">${moment(timeFormatted).format('MMMM Do')}</span>
                     </div>
-                    <div class="forecast-hour">
+                    <div class="forecast-hour bg-dark text-light ml-n2 mr-n2 mt-n2 p-2"">
                         ${moment(timeFormatted).format('hh:mm a')}
                     </div>
-                <div class="weather-icon">
-                <i class="h4 wi ${
+                <div class="weather-icon mt-3 h1 text-center">
+                <i class="wi ${
                     weatherData[i].icon === 'clear-day' ? 'wi-day-sunny' :
                     weatherData[i].icon === 'clear-night' ? 'wi-night-clear' :
                     weatherData[i].icon === 'partly-cloudy-day' ? 'wi-day-cloudy' :
@@ -145,9 +147,10 @@ class ShowWeatherInfo {
                         ${weatherData[i].windSpeed} km/h 
                     </div>
                 </div>
+                </div>
                 </div>`;
             }
-            template += `</div>`
+            template += `</div></div>`
             document.querySelector('#forecast').innerHTML = template;
         })
 
