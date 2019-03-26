@@ -88,12 +88,14 @@ class ShowWeatherInfo {
         forecastArray.forEach(weatherData => {
             let forecastArrayLength = weatherData.length
             let template = ``;
-            template += '<h3>Eight days forecast</h3>'
+            template += '<h3 class="col-12">Eight days forecast</h3>'
             for (let i = 0; i < forecastArrayLength; i++) {
                 let timeFormatted = this.formatDate(weatherData[i])
                 template += `
-                    ${moment(timeFormatted).format('dddd, MMMM Do YYYY')}
-                `;
+                <div class="col-md-3 col-sm-6 col-12">
+                    ${moment(timeFormatted).format('dddd')}<br>
+                    <span class="forecast-day small">${moment(timeFormatted).format('MMMM Do')}</span>
+                </div>`;
             }
             console.log(template)
             document.querySelector('#forecast').innerHTML = template;
