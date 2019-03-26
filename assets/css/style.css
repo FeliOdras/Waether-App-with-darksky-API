@@ -19,6 +19,9 @@ header {
   background-attachment: fixed;
   overflow-y: scroll; }
 
+header {
+  z-index: 1000; }
+
 main {
   max-width: 1000px; }
 

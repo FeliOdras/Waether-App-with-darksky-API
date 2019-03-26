@@ -87,7 +87,7 @@ class ShowWeatherInfo {
         let forecastArray = new Array(array)
         let template = ``;
         template += `<div class="${cssClass} ">`
-        template += `<h3 class="col-12">${headline}</h3>`
+        template += `<h3 class="col-12 bg-light-70 p-2 mb-4">${headline}</h3>`
         template += `<div class="d-flex flex-wrap align-self-stretch">`
         forecastArray.forEach(weatherData => {
             let forecastArrayLength = weatherData.length
