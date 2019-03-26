@@ -89,14 +89,16 @@ class ShowWeatherInfo {
     showDailyForecast() {
 
         let dailyForecast = this.weatherData.daily.data;
-        console.log(dailyForecast)
-        let dailyForecastOutput = dailyForecast.map(
-            (weatherData, key) => {
-                `Hello ${weatherData.summary}`
+        let forecastArray = new Array(dailyForecast);
+        let dailyForecastOutput = forecastArray.forEach(weatherData => {
+            let forecastArrayLength = weatherData.length
+            let template = ``;
+            for (let i = 0; i < forecastArrayLength; i++) {
+                template += `Hello ${weatherData[i].time} `;
             }
-        )
-        console.log(dailyForecastOutput)
-        document.querySelector('#forecast').innerHTML = dailyForecastOutput;
+            console.log(template)
+        })
+
     }
 }
 
