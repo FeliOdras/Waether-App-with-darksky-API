@@ -24,58 +24,60 @@ class ShowWeatherInfo {
         let weather = this.weatherData;
         let currentTime = this.formatDate(weather.currently);
         let template = `
-            <h2>${weather.timezone}</h2>
-            <h3>Today</h3>
-            <div class="current-time">${moment(currentTime).format('dddd, MMMM Do YYYY')}<br>
-            <span class="currentHour">${moment(currentTime).format('hh:mm a')}</span></div>
-            <div class="current-weather row">
-                <div class="summary col-md-3 col-sm-12">
-                <div class="row">
-                    <div class="col-2">
-                        <i class="h4 wi ${
-                            weather.currently.icon === 'clear-day' ? 'wi-day-sunny' :
-                            weather.currently.icon === 'clear-night' ? 'wi-night-clear' :
-                            weather.currently.icon === 'partly-cloudy-day' ? 'wi-day-cloudy' :
-                            weather.currently.icon === 'partly-cloudy-night' ? 'wi-night-alt-cloudy' :
-                            weather.currently.icon === 'cloudy' ? 'wi-cloudy' :
-                            weather.currently.icon === 'rain' ? 'wi-rain' :
-                            weather.currently.icon === 'sleet' ? 'wi-sleet' :
-                            weather.currently.icon === 'snow' ? 'wi-snow' :
-                            weather.currently.icon === 'wind' ? 'wi-cloudy-gusts' :
-                            weather.currently.icon === 'fog' ?  'wi-fog' :
-                            'wi-na'
-                        }">
-                        </i>
-                    </div>
-                    <div class="col-10">
-                        ${weather.currently.summary}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 h4">
-                        <i class="wi wi-thermometer h4"></i> 
-                    </div>
-                    <div class="col-10">
-                       ${weather.currently.temperature} °C
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 h4">
-                        <i class="wi wi-rain"></i> 
-                    </div>
-                    <div class="col-10">
-                        ${weather.currently.precipProbability} % 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-2 h4">
-                        <i class="wi wi-strong-wind"></i> 
-                    </div>
-                    <div class="col-10">
-                        ${weather.currently.windSpeed} km/h 
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-12 location text-light p-4">
+                <h2>${weather.timezone}</h2>
+                <h3>Today</h3>
+                <div class="current-time">${moment(currentTime).format('dddd, MMMM Do YYYY')}<br>
+                <span class="currentHour">${moment(currentTime).format('hh:mm a')}</span></div>
             </div>
+            <div class="rounded bg-light-70 p-4">
+                <div class="current-weather row">
+                        <div class="col-3 pr-1">
+                            <i class="h4 wi ${
+                                weather.currently.icon === 'clear-day' ? 'wi-day-sunny' :
+                                weather.currently.icon === 'clear-night' ? 'wi-night-clear' :
+                                weather.currently.icon === 'partly-cloudy-day' ? 'wi-day-cloudy' :
+                                weather.currently.icon === 'partly-cloudy-night' ? 'wi-night-alt-cloudy' :
+                                weather.currently.icon === 'cloudy' ? 'wi-cloudy' :
+                                weather.currently.icon === 'rain' ? 'wi-rain' :
+                                weather.currently.icon === 'sleet' ? 'wi-sleet' :
+                                weather.currently.icon === 'snow' ? 'wi-snow' :
+                                weather.currently.icon === 'wind' ? 'wi-cloudy-gusts' :
+                                weather.currently.icon === 'fog' ?  'wi-fog' :
+                                'wi-na'
+                            }">
+                            </i>
+                        </div>
+                        <div class="col-9">
+                            ${weather.currently.summary}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 h4">
+                            <i class="wi wi-thermometer h4"></i> 
+                        </div>
+                        <div class="col-9">
+                        ${weather.currently.temperature} °C
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 h4">
+                            <i class="wi wi-rain"></i> 
+                        </div>
+                        <div class="col-9">
+                            ${weather.currently.precipProbability} % 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 h4">
+                            <i class="wi wi-strong-wind"></i> 
+                        </div>
+                        <div class="col-9">
+                            ${weather.currently.windSpeed} km/h 
+                        </div>
+                    </div>
+               
         `
         document.querySelector('#currentWeather').innerHTML = template;
         this.addEventListeners();
