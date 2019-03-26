@@ -3,3 +3,12 @@
 @import url("https://fonts.googleapis.com/css?family=Patrick+Hand|Raleway");
 :root {
   font-size: 14px; }
+
+body {
+  font-family: "Raleway", sans-serif; }
+
+header {
+  font-family: "Patrick Hand", cursive; }
+
+#currentWeather {
+  max-width: 1000px; }

@@ -10,15 +10,17 @@
 </head>
 
 <body>
-    <header>
-        <h1>Weather Check</h1>
-    </header>
-    <div id="currentWeather">
+    <div id="page">
+        <header>
+            <h1>Weather Check</h1>
+        </header>
+        <div id="currentWeather" class="m-auto mt-5 mb-2">
 
+        </div>
+        <button id="show-forecast-daily">Show next days' forecast</button>
+        <button id="show-forecast-hourly">Show next hours' forecast</button>
+        <div id="forecast"></div>
     </div>
-    <button id="show-forecast-daily">Show next days' forecast</button>
-    <button id="show-forecast-hourly">Show next hours' forecast</button>
-    <div id="forecast"></div>
     <script src="node_modules/moment/moment.js"></script>
     <script src="assets/js/main.js">
     </script>
