@@ -3,7 +3,9 @@
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    min-height: 100vh;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow-y: scroll;
 }
 
 main {
