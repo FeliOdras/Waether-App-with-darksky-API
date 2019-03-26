@@ -14,26 +14,21 @@ class ShowWeatherInfo {
             })
     }
 
-    formatDateNow() {
-        let data = this.weatherData;
-        let timeNow = data.currently.time;
-        let timeNowUTC = new Date(timeNow * 1000);
-        let dayNowFormatted = moment(timeNowUTC).format('dddd, MMMM Do YYYY');
-        let hourNowFormatted = moment(timeNowUTC).format(' hh:mm a');
-        let timeNowFormatted = `
-        <div class="today">${dayNowFormatted}</div>
-        <div class="now">${hourNowFormatted}</div>`
-        return timeNowFormatted;
+    formatDate(array) {
+        let data = array;
+        let timeNow = data.time;
+        let timeUTC = new Date(timeNow * 1000);
+        return timeUTC;
     }
 
     createTemplateCurrent() {
         let weather = this.weatherData;
-        let currentTime = this.formatDateNow();
-        console.log(weather)
+        let currentTime = this.formatDate(weather.currently);
         let template = `
             <h2>${weather.timezone}</h2>
             <h3>Today</h3>
-            <div class="current-time">${currentTime}</div>
+            <div class="current-time">${moment(currentTime).format('dddd, MMMM Do YYYY')}<br>
+            <span class="currentHour">${moment(currentTime).format('hh:mm a')}</span></div>
             <div class="current-weather row">
                 <div class="summary col-md-3 col-sm-12">
                 <div class="row">
@@ -90,13 +85,18 @@ class ShowWeatherInfo {
 
         let dailyForecast = this.weatherData.daily.data;
         let forecastArray = new Array(dailyForecast);
-        let dailyForecastOutput = forecastArray.forEach(weatherData => {
+        forecastArray.forEach(weatherData => {
             let forecastArrayLength = weatherData.length
             let template = ``;
+            template += '<h3>Eight days forecast</h3>'
             for (let i = 0; i < forecastArrayLength; i++) {
-                template += `Hello ${weatherData[i].time} `;
+                let timeFormatted = this.formatDate(weatherData[i])
+                template += `
+                    ${moment(timeFormatted).format('dddd, MMMM Do YYYY')}
+                `;
             }
             console.log(template)
+            document.querySelector('#forecast').innerHTML = template;
         })
 
     }
