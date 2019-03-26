@@ -58,7 +58,7 @@ class ShowWeatherInfo {
                             <i class="wi wi-thermometer h4"></i> 
                         </div>
                         <div class="col-9">
-                        ${weather.currently.temperature} °C
+                        ${Math.floor(weather.currently.temperature)} °C
                         </div>
                     </div>
                     <div class="row">
@@ -66,7 +66,7 @@ class ShowWeatherInfo {
                             <i class="wi wi-rain"></i> 
                         </div>
                         <div class="col-9">
-                            ${weather.currently.precipProbability} % 
+                            ${Math.floor(weather.currently.precipProbability * 100)} % 
                         </div>
                     </div>
                     <div class="row">
@@ -127,8 +127,8 @@ class ShowWeatherInfo {
                     <div class="col-9 small">
                     ${weatherData[i].temperature === undefined ? 
                         `
-                        ${weatherData[i].temperatureMin} - ${weatherData[i].temperatureMax} °C
-                       ` : `${weatherData[i].temperature} °C`}
+                        ${Math.floor(weatherData[i].temperatureMin)} - ${Math.floor(weatherData[i].temperatureMax)} °C
+                       ` : `${Math.floor(weatherData[i].temperature)} °C`}
                     </div>
                 </div>
                 <div class="row">
@@ -136,7 +136,7 @@ class ShowWeatherInfo {
                         <i class="wi wi-rain"></i> 
                     </div>
                     <div class="col-9 small">
-                       ${weatherData[i].precipProbability} %
+                       ${Math.floor(weatherData[i].precipProbability * 100)} %
                     </div>
                 </div>
                 <div class="row">
