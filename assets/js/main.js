@@ -24,14 +24,14 @@ class ShowWeatherInfo {
         let weather = this.weatherData;
         let currentTime = this.formatDate(weather.currently);
         let template = `
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-12 location text-light p-4">
+        <div class="row mx-3">
+            <div class="col-md-6 col-sm-6 col-12 location text-light p-4">
                 <h2>${weather.timezone}</h2>
                 <h3>Today</h3>
                 <div class="current-time">${moment(currentTime).format('dddd, MMMM Do YYYY')}<br>
                 <span class="currentHour">${moment(currentTime).format('hh:mm a')}</span></div>
             </div>
-            <div class="rounded bg-light-70 p-4">
+            <div class="rounded bg-light-70 p-4 col-md-6 col-sm-6 col-12">
                 <div class="current-weather row">
                         <div class="col-3 pr-1">
                             <i class="h4 wi ${
