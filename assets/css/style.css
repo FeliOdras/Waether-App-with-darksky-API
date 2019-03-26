@@ -1,2 +1,5 @@
 @import url(../../node_modules/weather-icons/css/weather-icons.css);
 @import url(../../node_modules/bootstrap/dist/css/bootstrap.min.css);
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand|Raleway");
+:root {
+  font-size: 14px; }
