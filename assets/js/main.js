@@ -9,8 +9,8 @@ class ShowWeatherInfo {
             .then(response => response.json())
             .then(data => {
                 this.weatherData = data;
-                this.createTemplateCurrent()
-                this.showDailyForecast()
+                this.createTemplateCurrent();
+                // this.showForecast(this.weatherData.daily.data)
             })
     }
 
@@ -48,59 +48,113 @@ class ShowWeatherInfo {
                         }">
                         </i>
                     </div>
-                    <div class="col-5">
-                    </div>
-                    <div class="col-5">
-                        <small>${weather.currently.summary}</small>
+                    <div class="col-10">
+                        ${weather.currently.summary}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-2 h4">
                         <i class="wi wi-thermometer h4"></i> 
                     </div>
-                    <div class="col-5">
+                    <div class="col-10">
                        ${weather.currently.temperature} °C
                     </div>
-                    <div class="col-5 small">
-                       apparent: ${weather.currently.apparentTemperature} °C
+                </div>
+                <div class="row">
+                    <div class="col-2 h4">
+                        <i class="wi wi-rain"></i> 
+                    </div>
+                    <div class="col-10">
+                        ${weather.currently.precipProbability} % 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-2 h4">
                         <i class="wi wi-strong-wind"></i> 
                     </div>
-                    <div class="col-5">
+                    <div class="col-10">
                         ${weather.currently.windSpeed} km/h 
-                    </div>
-                    <div class="col-5 small">
-                        gusts: ${weather.currently.windGust} km/h
                     </div>
                 </div>
             </div>
         `
-        document.querySelector('#currentWeather').innerHTML = template
+        document.querySelector('#currentWeather').innerHTML = template;
+        this.addEventListeners();
     }
 
-    showDailyForecast() {
-
-        let dailyForecast = this.weatherData.daily.data;
-        let forecastArray = new Array(dailyForecast);
+    showForecast(array, cssClass, headline) {
+        let forecastArray = new Array(array)
+        let template = ``;
+        template += `<div class="${cssClass} row">`
+        template += `<h3 class="col-12">${headline}</h3>`
         forecastArray.forEach(weatherData => {
             let forecastArrayLength = weatherData.length
-            let template = ``;
-            template += '<h3 class="col-12">Eight days forecast</h3>'
             for (let i = 0; i < forecastArrayLength; i++) {
                 let timeFormatted = this.formatDate(weatherData[i])
                 template += `
                 <div class="col-md-3 col-sm-6 col-12">
-                    ${moment(timeFormatted).format('dddd')}<br>
-                    <span class="forecast-day small">${moment(timeFormatted).format('MMMM Do')}</span>
+                   <div class="forecast-day">
+                        ${moment(timeFormatted).format('dddd')}<br>
+                        <span class="forecast-day small">${moment(timeFormatted).format('MMMM Do')}</span>
+                    </div>
+                    <div class="forecast-hour">
+                        ${moment(timeFormatted).format('hh:mm a')}
+                    </div>
+                <div class="weather-icon">
+                <i class="h4 wi ${
+                    weatherData[i].icon === 'clear-day' ? 'wi-day-sunny' :
+                    weatherData[i].icon === 'clear-night' ? 'wi-night-clear' :
+                    weatherData[i].icon === 'partly-cloudy-day' ? 'wi-day-cloudy' :
+                    weatherData[i].icon === 'partly-cloudy-night' ? 'wi-night-alt-cloudy' :
+                    weatherData[i].icon === 'cloudy' ? 'wi-cloudy' :
+                    weatherData[i].icon === 'rain' ? 'wi-rain' :
+                    weatherData[i].icon === 'sleet' ? 'wi-sleet' :
+                    weatherData[i].icon === 'snow' ? 'wi-snow' :
+                    weatherData[i].icon === 'wind' ? 'wi-cloudy-gusts' :
+                    weatherData[i].icon === 'fog' ?  'wi-fog' :
+                    'wi-na'
+                }">
+                </i>
+                </div>
+                <span class="small">${weatherData[i].summary}</span>
+                <div class="row">
+                    <div class="col-3">
+                        <i class="wi wi-thermometer"></i> 
+                    </div>
+                    <div class="col-9 small">
+                    ${weatherData[i].temperature === undefined ? 
+                        `
+                        ${weatherData[i].temperatureMin} - ${weatherData[i].temperatureMax} °C
+                       ` : `${weatherData[i].temperature} °C`}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <i class="wi wi-rain"></i> 
+                    </div>
+                    <div class="col-9 small">
+                       ${weatherData[i].precipProbability} %
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <i class="wi wi-strong-wind"></i> 
+                    </div>
+                    <div class="col-9 small">
+                        ${weatherData[i].windSpeed} km/h 
+                    </div>
+                </div>
                 </div>`;
             }
-            console.log(template)
+            template += `</div>`
             document.querySelector('#forecast').innerHTML = template;
         })
 
+    }
+
+    addEventListeners() {
+        document.querySelector('#show-forecast-daily').addEventListener('click', () => this.showForecast(this.weatherData.daily.data, 'daily-forecast', '8 days forecast'))
+        document.querySelector('#show-forecast-hourly').addEventListener('click', () => this.showForecast(this.weatherData.hourly.data, 'hourly-forecast', '48 hours forecast'))
     }
 }
 
