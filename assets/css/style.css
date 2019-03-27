@@ -1,14 +1,11 @@
 @import url(../../node_modules/weather-icons/css/weather-icons.css);
 @import url(../../node_modules/bootstrap/dist/css/bootstrap.min.css);
-@import url("https://fonts.googleapis.com/css?family=Patrick+Hand|Raleway");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 :root {
   font-size: 14px; }
 
 body {
   font-family: "Raleway", sans-serif; }
-
-header {
-  font-family: "Patrick Hand", cursive; }
 
 #page {
   background-image: url(/assets/images/cloudscape-bg.jpg);
